@@ -1,0 +1,41 @@
+
+on death of player:
+    if victim's name is not "Itsteeltv":
+        # Get the player's head as an item
+        set {_head} to skull of victim
+        
+        # Name the head with the player's name and color it red
+        set {_head}'s display name to "%victim%'s head"
+        
+        # Drop the head at the location where the player died
+        drop {_head} at location of victim
+
+on break:
+    if name of player's tool is "&bPioche 3x3":
+        set {_x} to x-coordinate of event-block
+        set {_y} to y-coordinate of event-block
+        set {_z} to z-coordinate of event-block
+        
+        loop blocks in radius 1 around event-block:
+            if loop-block is breakable:
+                drop loop-block at location of loop-block
+                break loop-block
+
+command /give3x3pickaxe:
+    permission: op
+    trigger:
+        give player a diamond pickaxe named "&bPioche 3x3" with lore "&7Cette pioche mine en 3x3"
+
+
+#on rightclick with diamond pickaxe:
+#    if name of player's tool is "&bPioche 3x3":
+#        set {_block} to targeted block
+#        loop blocks in radius 1 around {_block}:
+#            if loop-block is breakable:
+#                drop loop-block at location of loop-block
+#                break loop-block
+
+#command /givehammer:
+#    permission: op
+#    trigger:
+#        give player a diamond pickaxe named "&bPioche 3x3" with lore "&7Cette pioche mine en 3x3"
